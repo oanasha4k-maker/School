@@ -1,813 +1,476 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Johnson Secondary School - Herbertpur, Dehradun</title>
+    <title>Johnson Secondary School - Dehradun, Uttarakhand</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
             font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
-            min-height: 100vh;
-            color: white;
-            overflow-x: hidden;
         }
-
-        /* Animated Background */
-        .bg-animation {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            overflow: hidden;
-        }
-
-        .bg-animation span {
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            animation: float 15s infinite;
-        }
-
-        .bg-animation span:nth-child(1) { left: 10%; animation-delay: 0s; width: 40px; height: 40px; }
-        .bg-animation span:nth-child(2) { left: 20%; animation-delay: 2s; width: 20px; height: 20px; }
-        .bg-animation span:nth-child(3) { left: 30%; animation-delay: 4s; width: 60px; height: 60px; }
-        .bg-animation span:nth-child(4) { left: 40%; animation-delay: 6s; width: 30px; height: 30px; }
-        .bg-animation span:nth-child(5) { left: 50%; animation-delay: 8s; width: 50px; height: 50px; }
-        .bg-animation span:nth-child(6) { left: 60%; animation-delay: 10s; width: 25px; height: 25px; }
-        .bg-animation span:nth-child(7) { left: 70%; animation-delay: 12s; width: 45px; height: 45px; }
-        .bg-animation span:nth-child(8) { left: 80%; animation-delay: 14s; width: 35px; height: 35px; }
-        .bg-animation span:nth-child(9) { left: 90%; animation-delay: 16s; width: 55px; height: 55px; }
-        .bg-animation span:nth-child(10) { left: 5%; animation-delay: 18s; width: 28px; height: 28px; }
-
+        
         @keyframes float {
-            0% {
-                transform: translateY(100vh) rotate(0deg);
-                opacity: 0;
-            }
-            10% {
-                opacity: 1;
-            }
-            90% {
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-100vh) rotate(720deg);
-                opacity: 0;
-            }
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
         }
-
-        /* Container */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
+        
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-100px); }
+            to { opacity: 1; transform: translateX(0); }
         }
-
-        /* Header Section */
-        .header {
-            text-align: center;
-            padding: 40px 20px;
-            animation: fadeInDown 1s ease;
+        
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(100px); }
+            to { opacity: 1; transform: translateX(0); }
         }
-
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        
+        @keyframes slideInUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
         }
-
-        .logo-container {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            flex-wrap: wrap;
-            margin-bottom: 30px;
-        }
-
-        .logo-box {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 20px;
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            transition: all 0.5s ease;
-            animation: pulse 2s infinite;
-        }
-
-        .logo-box:hover {
-            transform: scale(1.05) rotate(2deg);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-            border-color: #ffd700;
-        }
-
-        @keyframes pulse {
-            0%, 100% {
-                box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
-            }
-            50% {
-                box-shadow: 0 0 40px rgba(255, 215, 0, 0.6);
-            }
-        }
-
-        .logo-box img {
-            width: 200px;
-            height: 200px;
-            object-fit: contain;
-            border-radius: 15px;
-        }
-
-        .school-name {
-            font-size: 3rem;
-            font-weight: 800;
-            background: linear-gradient(45deg, #ffd700, #ff6b6b, #4ecdc4, #ffd700);
-            background-size: 300% 300%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: gradientMove 3s ease infinite;
-            text-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
-            margin-bottom: 10px;
-        }
-
-        @keyframes gradientMove {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        .address {
-            font-size: 1.3rem;
-            color: #4ecdc4;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            animation: fadeIn 1.5s ease;
-        }
-
+        
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
         }
-
-        .address-icon {
-            animation: bounce 1s infinite;
+        
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(59, 130, 246, 0.5); }
+            50% { box-shadow: 0 0 40px rgba(59, 130, 246, 0.8), 0 0 60px rgba(147, 51, 234, 0.5); }
         }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+        
+        @keyframes gradient-shift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
-
-        /* About Section */
-        .about-section {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border-radius: 30px;
-            padding: 40px;
-            margin: 40px 0;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            animation: slideInLeft 1s ease;
+        
+        @keyframes bounce-in {
+            0% { transform: scale(0); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
         }
-
-        @keyframes slideInLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-100px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
+        
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
         }
-
-        .section-title {
-            font-size: 2.5rem;
-            text-align: center;
-            margin-bottom: 30px;
-            color: #ffd700;
-            position: relative;
+        
+        @keyframes rotate-slow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
         }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 4px;
-            background: linear-gradient(90deg, #ff6b6b, #4ecdc4);
-            border-radius: 2px;
+        
+        .animate-float { animation: float 3s ease-in-out infinite; }
+        .animate-slide-left { animation: slideInLeft 1s ease-out forwards; }
+        .animate-slide-right { animation: slideInRight 1s ease-out forwards; }
+        .animate-slide-up { animation: slideInUp 1s ease-out forwards; }
+        .animate-fade-in { animation: fadeIn 1.5s ease-out forwards; }
+        .animate-pulse-glow { animation: pulse-glow 2s ease-in-out infinite; }
+        .animate-bounce-in { animation: bounce-in 0.6s ease-out forwards; }
+        .animate-rotate-slow { animation: rotate-slow 20s linear infinite; }
+        
+        .gradient-bg {
+            background: linear-gradient(-45deg, #1e3a8a, #7c3aed, #2563eb, #8b5cf6);
+            background-size: 400% 400%;
+            animation: gradient-shift 15s ease infinite;
         }
-
-        .about-text {
-            font-size: 1.1rem;
-            line-height: 2;
-            text-align: center;
-            color: #e0e0e0;
-        }
-
-        .highlight {
-            color: #ffd700;
-            font-weight: 600;
-        }
-
-        /* Teachers Section */
-        .teachers-section {
-            margin: 60px 0;
-        }
-
-        .teachers-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-
-        .teacher-card {
-            background: linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
-            backdrop-filter: blur(10px);
-            border-radius: 25px;
-            padding: 40px 30px;
-            text-align: center;
-            border: 2px solid transparent;
-            transition: all 0.5s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .teacher-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.5s ease;
-        }
-
-        .teacher-card:hover::before {
-            left: 100%;
-        }
-
-        .teacher-card:hover {
-            transform: translateY(-15px) scale(1.02);
-            border-color: #ffd700;
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
-        }
-
-        .teacher-card:nth-child(1) { animation: fadeInUp 0.8s ease 0.2s backwards; }
-        .teacher-card:nth-child(2) { animation: fadeInUp 0.8s ease 0.4s backwards; }
-        .teacher-card:nth-child(3) { animation: fadeInUp 0.8s ease 0.6s backwards; }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .teacher-icon {
-            font-size: 4rem;
-            margin-bottom: 20px;
-            display: block;
-            animation: swing 2s ease-in-out infinite;
-        }
-
-        @keyframes swing {
-            0%, 100% { transform: rotate(-5deg); }
-            50% { transform: rotate(5deg); }
-        }
-
-        .teacher-name {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: #fff;
-            margin-bottom: 10px;
-        }
-
-        .teacher-role {
-            font-size: 1.1rem;
-            color: #4ecdc4;
-            font-weight: 500;
-            margin-bottom: 15px;
-        }
-
-        .teacher-desc {
-            color: #b0b0b0;
-            font-size: 0.95rem;
-            line-height: 1.6;
-        }
-
-        /* Features Section */
-        .features-section {
-            margin: 60px 0;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 25px;
-            margin-top: 40px;
-        }
-
-        .feature-item {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 20px;
-            padding: 30px;
-            text-align: center;
-            transition: all 0.4s ease;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .feature-item:hover {
-            background: rgba(255, 255, 255, 0.1);
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-        }
-
-        .feature-icon {
-            font-size: 3rem;
-            margin-bottom: 15px;
-            display: block;
-        }
-
-        .feature-title {
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: #ffd700;
-            margin-bottom: 10px;
-        }
-
-        .feature-desc {
-            color: #b0b0b0;
-            font-size: 0.9rem;
-        }
-
-        /* Social Section */
-        .social-section {
-            background: linear-gradient(135deg, rgba(131, 58, 180, 0.3), rgba(253, 29, 29, 0.3), rgba(252, 176, 69, 0.3));
-            border-radius: 30px;
-            padding: 50px;
-            margin: 60px 0;
-            text-align: center;
-            animation: glow 2s ease-in-out infinite alternate;
-        }
-
-        @keyframes glow {
-            from {
-                box-shadow: 0 0 30px rgba(131, 58, 180, 0.3);
-            }
-            to {
-                box-shadow: 0 0 50px rgba(253, 29, 29, 0.5);
-            }
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            flex-wrap: wrap;
-            margin-top: 30px;
-        }
-
-        .social-link {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-decoration: none;
-            color: white;
-            transition: all 0.4s ease;
-        }
-
-        .social-link:hover {
-            transform: scale(1.1);
-        }
-
-        .insta-icon {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2.5rem;
-            margin-bottom: 15px;
-            transition: all 0.4s ease;
-        }
-
-        .social-link:hover .insta-icon {
-            transform: rotate(10deg);
-            box-shadow: 0 15px 30px rgba(220, 39, 67, 0.5);
-        }
-
-        .social-handle {
-            font-size: 1.1rem;
-            font-weight: 600;
-        }
-
-        .social-label {
-            font-size: 0.9rem;
-            color: #b0b0b0;
-            margin-top: 5px;
-        }
-
-        /* Creator Section */
-        .creator-section {
-            text-align: center;
-            padding: 60px 20px;
-            position: relative;
-        }
-
-        .creator-box {
-            background: linear-gradient(145deg, rgba(0, 100, 0, 0.2), rgba(0, 0, 0, 0.3));
-            border-radius: 30px;
-            padding: 50px;
-            display: inline-block;
-            border: 3px solid transparent;
-            background-clip: padding-box;
-            position: relative;
-            animation: borderGlow 3s ease-in-out infinite;
-        }
-
-        @keyframes borderGlow {
-            0%, 100% {
-                border-color: #00ff00;
-                box-shadow: 0 0 30px rgba(0, 255, 0, 0.3);
-            }
-            33% {
-                border-color: #ff0000;
-                box-shadow: 0 0 30px rgba(255, 0, 0, 0.3);
-            }
-            66% {
-                border-color: #ffffff;
-                box-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
-            }
-        }
-
-        .made-by-text {
-            font-size: 1.5rem;
-            color: #b0b0b0;
-            margin-bottom: 20px;
-        }
-
-        .creator-name {
-            font-size: 3.5rem;
-            font-weight: 800;
-            background: linear-gradient(45deg, #00ff00, #ffffff, #ff0000);
-            background-size: 200% 200%;
+        
+        .shimmer-text {
+            background: linear-gradient(90deg, #fff 0%, #fcd34d 25%, #fff 50%, #fcd34d 75%, #fff 100%);
+            background-size: 200% auto;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: palestineColors 2s ease infinite;
-            margin-bottom: 20px;
+            animation: shimmer 3s linear infinite;
         }
-
-        @keyframes palestineColors {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
+        
+        .card-hover {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
-
-        .palestine-flag {
-            font-size: 5rem;
-            animation: flagWave 1s ease-in-out infinite;
-            display: inline-block;
+        
+        .card-hover:hover {
+            transform: translateY(-10px) scale(1.02);
         }
-
-        @keyframes flagWave {
-            0%, 100% { transform: rotate(-5deg); }
-            50% { transform: rotate(5deg); }
-        }
-
-        .creator-insta {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            margin-top: 20px;
-            padding: 15px 30px;
-            background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
-            border-radius: 50px;
-            color: white;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.4s ease;
-        }
-
-        .creator-insta:hover {
-            transform: scale(1.1);
-            box-shadow: 0 15px 30px rgba(220, 39, 67, 0.5);
-        }
-
-        /* Footer */
-        .footer {
-            text-align: center;
-            padding: 30px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            margin-top: 40px;
-        }
-
-        .footer-text {
-            color: #666;
-            font-size: 0.9rem;
-        }
-
-        .heart {
-            color: #ff6b6b;
-            animation: heartbeat 1s ease-in-out infinite;
-            display: inline-block;
-        }
-
-        @keyframes heartbeat {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.2); }
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .school-name {
-                font-size: 2rem;
-            }
-
-            .logo-box img {
-                width: 150px;
-                height: 150px;
-            }
-
-            .section-title {
-                font-size: 1.8rem;
-            }
-
-            .creator-name {
-                font-size: 2.5rem;
-            }
-
-            .palestine-flag {
-                font-size: 3rem;
-            }
-
-            .social-links {
-                gap: 20px;
-            }
-        }
-
-        /* Scroll Animation */
-        .scroll-animate {
+        
+        .creator-badge {
+            animation: bounce-in 1s ease-out forwards;
+            animation-delay: 2s;
             opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease;
         }
-
-        .scroll-animate.visible {
-            opacity: 1;
-            transform: translateY(0);
+        
+        .teacher-card {
+            opacity: 0;
+        }
+        
+        .teacher-card.visible {
+            animation: slideInUp 0.8s ease-out forwards;
+        }
+        
+        .palestine-flag {
+            display: inline-block;
+            animation: pulse 2s infinite;
+        }
+        
+        .logo-container {
+            animation: float 4s ease-in-out infinite;
+        }
+        
+        .decorative-circle {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.1;
+            animation: rotate-slow 20s linear infinite;
         }
     </style>
 </head>
-<body>
-    <!-- Animated Background -->
-    <div class="bg-animation">
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-    </div>
+<body class="gradient-bg min-h-screen overflow-x-hidden">
+    <!-- Decorative Elements -->
+    <div class="decorative-circle w-96 h-96 bg-yellow-400 -top-48 -left-48 fixed"></div>
+    <div class="decorative-circle w-64 h-64 bg-pink-400 top-1/2 -right-32 fixed" style="animation-direction: reverse;"></div>
+    <div class="decorative-circle w-80 h-80 bg-blue-300 -bottom-40 left-1/4 fixed"></div>
 
-    <div class="container">
-        <!-- Header Section -->
-        <header class="header">
-            <div class="logo-container">
-                <div class="logo-box">
-                    <img src="https://i.postimg.cc/D8qPZGmm/image.png" alt="Johnson Secondary School Logo">
-                </div>
-                <div class="logo-box">
-                    <img src="https://i.postimg.cc/mtxSBjZc/image.png" alt="School Building">
-                </div>
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 bg-white/10 backdrop-blur-lg border-b border-white/20">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+            <div class="flex items-center gap-3 animate-slide-left">
+                <img src="https://i.postimg.cc/D8qPZGmm/image.png" alt="School Logo" class="w-12 h-12 rounded-full object-cover border-2 border-yellow-400">
+                <span class="text-xl font-bold text-white">Johnson Secondary School</span>
             </div>
-            <h1 class="school-name">🏫 Johnson Secondary School 🏫</h1>
-            <p class="address">
-                <span class="address-icon">📍</span>
-                Herbertpur, Dehradun, Uttarakhand, India
-            </p>
-        </header>
-
-        <!-- About Section -->
-        <section class="about-section scroll-animate">
-            <h2 class="section-title">📚 Hamare School Ke Baare Mein</h2>
-            <p class="about-text">
-                <span class="highlight">Johnson Secondary School</span> Uttarakhand ke Dehradun district ke 
-                <span class="highlight">Herbertpur</span> mein sthit ek prasiddh vidyalaya hai. 
-                Hamara school <span class="highlight">quality education</span> aur 
-                <span class="highlight">excellent teaching</span> ke liye jaana jaata hai. 
-                Yahan par bachchon ko <span class="highlight">pyaar aur care</span> ke saath padhaya jaata hai. 
-                Hamare teachers bahut <span class="highlight">dedicated</span> aur 
-                <span class="highlight">caring</span> hain jo har student ka 
-                <span class="highlight">future bright</span> banane mein madad karte hain! ✨
-            </p>
-        </section>
-
-        <!-- Teachers Section -->
-        <section class="teachers-section">
-            <h2 class="section-title scroll-animate">👨‍🏫 Hamare Teachers 👩‍🏫</h2>
-            <div class="teachers-grid">
-                <div class="teacher-card">
-                    <span class="teacher-icon">👩‍💼</span>
-                    <h3 class="teacher-name">Usha Mam</h3>
-                    <p class="teacher-role">🎓 Principal</p>
-                    <p class="teacher-desc">
-                        Hamare school ki Principal Usha Mam bahut hi experienced aur caring hain. 
-                        Unka behaviour bahut acha hai aur wo har student ka dhyan rakhti hain. 
-                        School ki discipline aur growth unki wajah se hai! 🌟
-                    </p>
-                </div>
-
-                <div class="teacher-card">
-                    <span class="teacher-icon">👩‍🏫</span>
-                    <h3 class="teacher-name">Kiran Mam</h3>
-                    <p class="teacher-role">📖 Teacher</p>
-                    <p class="teacher-desc">
-                        Kiran Mam hamare favourite teacher hain! Unka teaching style bahut 
-                        amazing hai. Wo har concept ko bahut achhe se samjhati hain. 
-                        Unka behaviour students ke saath bahut friendly hai! 💖
-                    </p>
-                </div>
-
-                <div class="teacher-card">
-                    <span class="teacher-icon">👨‍💻</span>
-                    <h3 class="teacher-name">Suraj Sir</h3>
-                    <p class="teacher-role">💻 Computer Teacher</p>
-                    <p class="teacher-desc">
-                        Suraj Sir hamare Computer Teacher hain. Wo computers aur technology 
-                        ke expert hain. Unse sikhna bahut fun hai! Coding aur programming 
-                        wo bahut achhe se sikhate hain! 🖥️
-                    </p>
-                </div>
+            <div class="hidden md:flex gap-8 animate-slide-right">
+                <a href="#home" class="text-white/90 hover:text-yellow-400 transition-colors font-medium">Home</a>
+                <a href="#about" class="text-white/90 hover:text-yellow-400 transition-colors font-medium">About</a>
+                <a href="#teachers" class="text-white/90 hover:text-yellow-400 transition-colors font-medium">Teachers</a>
+                <a href="#contact" class="text-white/90 hover:text-yellow-400 transition-colors font-medium">Contact</a>
             </div>
-        </section>
+        </div>
+    </nav>
 
-        <!-- Features Section -->
-        <section class="features-section">
-            <h2 class="section-title scroll-animate">⭐ School Ki Khaasiyat ⭐</h2>
-            <div class="features-grid">
-                <div class="feature-item scroll-animate">
-                    <span class="feature-icon">📚</span>
-                    <h3 class="feature-title">Quality Education</h3>
-                    <p class="feature-desc">Best quality education with modern teaching methods</p>
-                </div>
-                <div class="feature-item scroll-animate">
-                    <span class="feature-icon">💝</span>
-                    <h3 class="feature-title">Caring Teachers</h3>
-                    <p class="feature-desc">Teachers jo students ka pyaar se dhyan rakhte hain</p>
-                </div>
-                <div class="feature-item scroll-animate">
-                    <span class="feature-icon">🏆</span>
-                    <h3 class="feature-title">Best Results</h3>
-                    <p class="feature-desc">Har saal excellent board results</p>
-                </div>
-                <div class="feature-item scroll-animate">
-                    <span class="feature-icon">💻</span>
-                    <h3 class="feature-title">Computer Lab</h3>
-                    <p class="feature-desc">Modern computer lab with latest technology</p>
-                </div>
-                <div class="feature-item scroll-animate">
-                    <span class="feature-icon">🎨</span>
-                    <h3 class="feature-title">Extra Activities</h3>
-                    <p class="feature-desc">Sports, Arts, aur Cultural activities</p>
-                </div>
-                <div class="feature-item scroll-animate">
-                    <span class="feature-icon">🌟</span>
-                    <h3 class="feature-title">Friendly Environment</h3>
-                    <p class="feature-desc">Safe aur friendly learning environment</p>
-                </div>
-                <div class="feature-item scroll-animate">
-                    <span class="feature-icon">📖</span>
-                    <h3 class="feature-title">Library</h3>
-                    <p class="feature-desc">Big library with lots of books</p>
-                </div>
-                <div class="feature-item scroll-animate">
-                    <span class="feature-icon">🚌</span>
-                    <h3 class="feature-title">Transport</h3>
-                    <p class="feature-desc">Safe school bus facility available</p>
-                </div>
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center justify-center pt-20 px-6">
+        <div class="max-w-6xl mx-auto text-center">
+            <div class="logo-container mb-8">
+                <img src="https://i.postimg.cc/D8qPZGmm/image.png" alt="Johnson Secondary School Logo" 
+                     class="w-40 h-40 md:w-52 md:h-52 mx-auto rounded-full border-4 border-yellow-400 shadow-2xl animate-pulse-glow object-cover">
             </div>
-        </section>
-
-        <!-- Social Section -->
-        <section class="social-section scroll-animate">
-            <h2 class="section-title">📱 Follow Us On Instagram 📱</h2>
-            <div class="social-links">
-                <a href="https://instagram.com/johnsonsecondaryschool" target="_blank" class="social-link">
-                    <div class="insta-icon">📸</div>
-                    <span class="social-handle">@johnsonsecondaryschool</span>
-                    <span class="social-label">School Official Account</span>
-                </a>
-                <a href="https://instagram.com/phising.attaker" target="_blank" class="social-link">
-                    <div class="insta-icon">🔥</div>
-                    <span class="social-handle">@phising.attaker</span>
-                    <span class="social-label">Website Creator</span>
-                </a>
-            </div>
-        </section>
-
-        <!-- Creator Section -->
-        <section class="creator-section">
-            <div class="creator-box scroll-animate">
-                <p class="made-by-text">✨ This Website is Made By ✨</p>
-                <h2 class="creator-name">ANAS SAKA</h2>
-                <div class="palestine-flag">🇵🇸</div>
-                <p style="color: #4ecdc4; margin-top: 20px; font-size: 1.2rem;">
-                    Free Palestine 🇵🇸 | Support Humanity
+            
+            <h1 class="text-4xl md:text-7xl font-extrabold mb-4 animate-slide-up">
+                <span class="shimmer-text">Johnson Secondary School</span>
+            </h1>
+            
+            <div class="animate-fade-in" style="animation-delay: 0.5s;">
+                <p class="text-xl md:text-2xl text-white/90 mb-2 flex items-center justify-center gap-2">
+                    <span class="text-2xl">📍</span>
+                    <span>Herbertpur, Dehradun, Uttarakhand</span>
                 </p>
-                <a href="https://instagram.com/phising.attaker" target="_blank" class="creator-insta">
-                    📸 @phising.attaker
+                <p class="text-lg text-yellow-300 font-medium mt-4">
+                    "शिक्षा से सशक्तिकरण | Empowering Through Education"
+                </p>
+            </div>
+            
+            <div class="mt-10 flex flex-wrap justify-center gap-4 animate-slide-up" style="animation-delay: 0.8s;">
+                <a href="#about" class="px-8 py-4 bg-yellow-400 text-blue-900 font-bold rounded-full hover:bg-yellow-300 transform hover:scale-110 transition-all duration-300 shadow-lg">
+                    Explore More ✨
+                </a>
+                <a href="https://instagram.com/johnsonsecondaryschool" target="_blank" 
+                   class="px-8 py-4 bg-white/20 text-white font-bold rounded-full hover:bg-white/30 transform hover:scale-110 transition-all duration-300 border-2 border-white/50">
+                    Follow on Instagram 📸
                 </a>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Footer -->
-        <footer class="footer">
-            <p class="footer-text">
-                © 2024 Johnson Secondary School, Herbertpur, Dehradun, Uttarakhand
-                <br>
-                Made with <span class="heart">❤️</span> by <strong>ANAS SAKA</strong> 🇵🇸
-            </p>
-        </footer>
-    </div>
+    <!-- About Section -->
+    <section id="about" class="py-20 px-6">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl md:text-5xl font-bold text-center text-white mb-16 animate-fade-in">
+                🏫 About Our School
+            </h2>
+            
+            <div class="grid md:grid-cols-2 gap-10">
+                <div class="bg-white/10 backdrop-blur-lg rounded-3xl p-8 border border-white/20 card-hover">
+                    <div class="text-5xl mb-4">🌟</div>
+                    <h3 class="text-2xl font-bold text-yellow-400 mb-4">Excellence in Education</h3>
+                    <p class="text-white/90 leading-relaxed">
+                        Johnson Secondary School, Herbertpur mein sthit, Uttarakhand ke sabse achhe schools mein se ek hai. 
+                        Hamare school mein quality education ke saath-saath students ki overall development par focus kiya jaata hai.
+                    </p>
+                </div>
+                
+                <div class="bg-white/10 backdrop-blur-lg rounded-3xl p-8 border border-white/20 card-hover">
+                    <div class="text-5xl mb-4">💝</div>
+                    <h3 class="text-2xl font-bold text-pink-400 mb-4">Caring Environment</h3>
+                    <p class="text-white/90 leading-relaxed">
+                        Hamare teachers ka behaviour bahut hi achha hai. Woh har student ko pyaar aur respect ke saath treat 
+                        karte hain. Yahan har bachche ki care hoti hai aur unhe comfortable feel karaaya jaata hai.
+                    </p>
+                </div>
+                
+                <div class="bg-white/10 backdrop-blur-lg rounded-3xl p-8 border border-white/20 card-hover">
+                    <div class="text-5xl mb-4">📚</div>
+                    <h3 class="text-2xl font-bold text-green-400 mb-4">Quality Teaching</h3>
+                    <p class="text-white/90 leading-relaxed">
+                        Hamare teachers ki teaching bahut hi achhi hai. Woh complex concepts ko bhi simple tarike se samjhate 
+                        hain. Har student ko equal attention milti hai aur doubts clear karne mein teachers hamesha ready rehte hain.
+                    </p>
+                </div>
+                
+                <div class="bg-white/10 backdrop-blur-lg rounded-3xl p-8 border border-white/20 card-hover">
+                    <div class="text-5xl mb-4">🎯</div>
+                    <h3 class="text-2xl font-bold text-blue-400 mb-4">Bright Future</h3>
+                    <p class="text-white/90 leading-relaxed">
+                        Johnson Secondary School se nikal kar students apne future mein successful bante hain. 
+                        School mein moral values ke saath academics par bhi equal focus diya jaata hai.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- School Gallery -->
+    <section class="py-16 px-6">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl md:text-5xl font-bold text-center text-white mb-12">
+                📸 Our School
+            </h2>
+            <div class="flex justify-center">
+                <div class="bg-white/10 backdrop-blur-lg rounded-3xl p-4 border border-white/20 card-hover">
+                    <img src="https://i.postimg.cc/wyyv0nrh/image.png" alt="Johnson Secondary School" 
+                         class="rounded-2xl max-w-full h-auto shadow-2xl">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Teachers Section -->
+    <section id="teachers" class="py-20 px-6">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl md:text-5xl font-bold text-center text-white mb-16">
+                👨‍🏫 Our Amazing Teachers
+            </h2>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Principal -->
+                <div class="teacher-card bg-gradient-to-br from-yellow-400/20 to-orange-500/20 backdrop-blur-lg rounded-3xl p-8 border-2 border-yellow-400/50 text-center card-hover">
+                    <div class="w-28 h-28 mx-auto mb-6 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full flex items-center justify-center text-5xl shadow-lg">
+                        👩‍💼
+                    </div>
+                    <h3 class="text-2xl font-bold text-yellow-400 mb-2">Usha Ma'am</h3>
+                    <p class="text-white/80 font-medium mb-4">🎓 Principal</p>
+                    <p class="text-white/70 text-sm">
+                        Hamare school ki Principal, jo apne dedicated leadership se school ko heights par le ja rahi hain.
+                    </p>
+                    <div class="mt-4 inline-block px-4 py-2 bg-yellow-400/20 rounded-full text-yellow-300 text-sm">
+                        ⭐ School Leader
+                    </div>
+                </div>
+                
+                <!-- Teacher -->
+                <div class="teacher-card bg-gradient-to-br from-pink-400/20 to-purple-500/20 backdrop-blur-lg rounded-3xl p-8 border-2 border-pink-400/50 text-center card-hover" style="animation-delay: 0.2s;">
+                    <div class="w-28 h-28 mx-auto mb-6 bg-gradient-to-br from-pink-400 to-purple-500 rounded-full flex items-center justify-center text-5xl shadow-lg">
+                        👩‍🏫
+                    </div>
+                    <h3 class="text-2xl font-bold text-pink-400 mb-2">Kiran Ma'am</h3>
+                    <p class="text-white/80 font-medium mb-4">📖 Teacher</p>
+                    <p class="text-white/70 text-sm">
+                        Bahut hi caring aur dedicated teacher. Unka teaching style bahut interactive hai aur students ko easily samajh aata hai.
+                    </p>
+                    <div class="mt-4 inline-block px-4 py-2 bg-pink-400/20 rounded-full text-pink-300 text-sm">
+                        💖 Best Teacher
+                    </div>
+                </div>
+                
+                <!-- Computer Teacher -->
+                <div class="teacher-card bg-gradient-to-br from-blue-400/20 to-cyan-500/20 backdrop-blur-lg rounded-3xl p-8 border-2 border-blue-400/50 text-center card-hover" style="animation-delay: 0.4s;">
+                    <div class="w-28 h-28 mx-auto mb-6 bg-gradient-to-br from-blue-400 to-cyan-500 rounded-full flex items-center justify-center text-5xl shadow-lg">
+                        👨‍💻
+                    </div>
+                    <h3 class="text-2xl font-bold text-blue-400 mb-2">Suraj Sir</h3>
+                    <p class="text-white/80 font-medium mb-4">💻 Computer Teacher</p>
+                    <p class="text-white/70 text-sm">
+                        Computer ke expert! Coding, programming aur technology students ko bahut achhe se sikhate hain. Future ready banate hain!
+                    </p>
+                    <div class="mt-4 inline-block px-4 py-2 bg-blue-400/20 rounded-full text-blue-300 text-sm">
+                        🖥️ Tech Guru
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="py-20 px-6 bg-white/5">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl md:text-5xl font-bold text-center text-white mb-16">
+                ✨ Why Johnson Secondary School?
+            </h2>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div class="text-center p-6 bg-white/10 rounded-2xl card-hover">
+                    <div class="text-4xl mb-3">📚</div>
+                    <p class="text-white font-medium">Quality Education</p>
+                </div>
+                <div class="text-center p-6 bg-white/10 rounded-2xl card-hover">
+                    <div class="text-4xl mb-3">💝</div>
+                    <p class="text-white font-medium">Caring Teachers</p>
+                </div>
+                <div class="text-center p-6 bg-white/10 rounded-2xl card-hover">
+                    <div class="text-4xl mb-3">🏆</div>
+                    <p class="text-white font-medium">Best Results</p>
+                </div>
+                <div class="text-center p-6 bg-white/10 rounded-2xl card-hover">
+                    <div class="text-4xl mb-3">🌟</div>
+                    <p class="text-white font-medium">Bright Future</p>
+                </div>
+                <div class="text-center p-6 bg-white/10 rounded-2xl card-hover">
+                    <div class="text-4xl mb-3">🎨</div>
+                    <p class="text-white font-medium">Creative Learning</p>
+                </div>
+                <div class="text-center p-6 bg-white/10 rounded-2xl card-hover">
+                    <div class="text-4xl mb-3">🤝</div>
+                    <p class="text-white font-medium">Friendly Environment</p>
+                </div>
+                <div class="text-center p-6 bg-white/10 rounded-2xl card-hover">
+                    <div class="text-4xl mb-3">💻</div>
+                    <p class="text-white font-medium">Computer Lab</p>
+                </div>
+                <div class="text-center p-6 bg-white/10 rounded-2xl card-hover">
+                    <div class="text-4xl mb-3">🎯</div>
+                    <p class="text-white font-medium">Focused Learning</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 px-6">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-4xl md:text-5xl font-bold text-white mb-8">
+                📞 Contact Us
+            </h2>
+            
+            <div class="bg-white/10 backdrop-blur-lg rounded-3xl p-10 border border-white/20">
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="text-left">
+                        <h3 class="text-xl font-bold text-yellow-400 mb-4">📍 Address</h3>
+                        <p class="text-white/90">
+                            Johnson Secondary School<br>
+                            Herbertpur, Dehradun<br>
+                            Uttarakhand, India
+                        </p>
+                    </div>
+                    <div class="text-left">
+                        <h3 class="text-xl font-bold text-yellow-400 mb-4">📱 Social Media</h3>
+                        <a href="https://instagram.com/johnsonsecondaryschool" target="_blank" 
+                           class="flex items-center gap-3 text-white/90 hover:text-pink-400 transition-colors mb-3">
+                            <span class="text-2xl">📸</span>
+                            <span>@johnsonsecondaryschool</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Creator Section -->
+    <section class="py-16 px-6">
+        <div class="max-w-4xl mx-auto">
+            <div class="creator-badge bg-gradient-to-r from-purple-600/30 to-pink-600/30 backdrop-blur-lg rounded-3xl p-8 border-2 border-purple-400/50 text-center">
+                <h3 class="text-2xl font-bold text-white mb-4">💻 Website Created By</h3>
+                <div class="flex items-center justify-center gap-3 text-3xl md:text-4xl font-extrabold">
+                    <span class="bg-gradient-to-r from-green-400 via-white to-red-500 bg-clip-text text-transparent">
+                        ANAS SAKA
+                    </span>
+                    <span class="palestine-flag text-3xl">🇵🇸</span>
+                </div>
+                <a href="https://instagram.com/phising.attaker" target="_blank" 
+                   class="inline-flex items-center gap-2 mt-6 px-6 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold rounded-full hover:from-purple-600 hover:to-pink-600 transform hover:scale-110 transition-all duration-300">
+                    <span>📸</span>
+                    <span>@phising.attaker</span>
+                </a>
+                <p class="text-white/60 mt-4 text-sm">Follow for more awesome projects! 🚀</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-10 px-6 bg-black/30 border-t border-white/10">
+        <div class="max-w-6xl mx-auto text-center">
+            <div class="flex items-center justify-center gap-3 mb-4">
+                <img src="https://i.postimg.cc/D8qPZGmm/image.png" alt="Logo" class="w-10 h-10 rounded-full object-cover">
+                <span class="text-xl font-bold text-white">Johnson Secondary School</span>
+            </div>
+            <p class="text-white/60 mb-4">Herbertpur, Dehradun, Uttarakhand</p>
+            <div class="flex items-center justify-center gap-2 text-white/80">
+                <span>Made with</span>
+                <span class="text-red-500 animate-pulse text-xl">❤️</span>
+                <span>by</span>
+                <span class="font-bold text-purple-400">ANAS SAKA</span>
+                <span class="palestine-flag">🇵🇸</span>
+            </div>
+            <p class="text-white/40 text-sm mt-4">© 2024 Johnson Secondary School. All Rights Reserved.</p>
+        </div>
+    </footer>
 
     <script>
-        // Scroll Animation
-        function handleScrollAnimation() {
-            const elements = document.querySelectorAll('.scroll-animate');
-            elements.forEach(element => {
-                const elementTop = element.getBoundingClientRect().top;
-                const elementVisible = 150;
-                if (elementTop < window.innerHeight - elementVisible) {
-                    element.classList.add('visible');
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.2,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
                 }
+            });
+        }, observerOptions);
+
+        // Observe teacher cards
+        document.querySelectorAll('.teacher-card').forEach(card => {
+            observer.observe(card);
+        });
+
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add parallax effect to decorative circles
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            document.querySelectorAll('.decorative-circle').forEach((circle, index) => {
+                const speed = (index + 1) * 0.1;
+                circle.style.transform = `translateY(${scrolled * speed}px) rotate(${scrolled * 0.02}deg)`;
+            });
+        });
+
+        // Creator badge special animation on hover
+        const creatorBadge = document.querySelector('.creator-badge');
+        if (creatorBadge) {
+            creatorBadge.addEventListener('mouseenter', () => {
+                creatorBadge.style.transform = 'scale(1.02)';
+                creatorBadge.style.boxShadow = '0 0 50px rgba(147, 51, 234, 0.5)';
+            });
+            creatorBadge.addEventListener('mouseleave', () => {
+                creatorBadge.style.transform = 'scale(1)';
+                creatorBadge.style.boxShadow = 'none';
             });
         }
 
-        window.addEventListener('scroll', handleScrollAnimation);
-        window.addEventListener('load', handleScrollAnimation);
-
-        // Add some sparkle effect on click
-        document.addEventListener('click', function(e) {
-            const sparkle = document.createElement('div');
-            sparkle.innerHTML = '✨';
-            sparkle.style.cssText = `
-                position: fixed;
-                left: ${e.clientX}px;
-                top: ${e.clientY}px;
-                font-size: 2rem;
-                pointer-events: none;
-                animation: sparkleAnim 1s ease forwards;
-                z-index: 9999;
-            `;
-            document.body.appendChild(sparkle);
-            setTimeout(() => sparkle.remove(), 1000);
-        });
-
-        // Add sparkle animation
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes sparkleAnim {
-                0% { transform: scale(0) rotate(0deg); opacity: 1; }
-                100% { transform: scale(2) rotate(180deg); opacity: 0; }
-            }
-        `;
-        document.head.appendChild(style);
-
-        console.log('🇵🇸 Made by ANAS SAKA - @phising.attaker');
-        console.log('🏫 Johnson Secondary School, Herbertpur, Dehradun, Uttarakhand');
+        console.log('%c🇵🇸 Made with ❤️ by ANAS SAKA', 'font-size: 20px; font-weight: bold; color: #8b5cf6;');
+        console.log('%c📸 Instagram: @phising.attaker', 'font-size: 14px; color: #ec4899;');
     </script>
 </body>
 </html>
