@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Johnson Secondary School - Dehradun, Uttarakhand</title>
+    <title>Johnson Secondary School - Dehradun</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
@@ -12,8 +12,13 @@
         }
         
         @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(5deg); }
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(59, 130, 246, 0.5); }
+            50% { box-shadow: 0 0 40px rgba(59, 130, 246, 0.8), 0 0 60px rgba(147, 51, 234, 0.5); }
         }
         
         @keyframes slideInLeft {
@@ -36,441 +41,498 @@
             to { opacity: 1; }
         }
         
-        @keyframes pulse-glow {
-            0%, 100% { box-shadow: 0 0 20px rgba(59, 130, 246, 0.5); }
-            50% { box-shadow: 0 0 40px rgba(59, 130, 246, 0.8), 0 0 60px rgba(147, 51, 234, 0.5); }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-30px); }
+            60% { transform: translateY(-15px); }
         }
         
-        @keyframes gradient-shift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-        
-        @keyframes bounce-in {
-            0% { transform: scale(0); }
-            50% { transform: scale(1.2); }
-            100% { transform: scale(1); }
-        }
-        
-        @keyframes shimmer {
-            0% { background-position: -200% 0; }
-            100% { background-position: 200% 0; }
-        }
-        
-        @keyframes rotate-slow {
+        @keyframes rotate {
             from { transform: rotate(0deg); }
             to { transform: rotate(360deg); }
         }
         
-        .animate-float { animation: float 3s ease-in-out infinite; }
-        .animate-slide-left { animation: slideInLeft 1s ease-out forwards; }
-        .animate-slide-right { animation: slideInRight 1s ease-out forwards; }
-        .animate-slide-up { animation: slideInUp 1s ease-out forwards; }
-        .animate-fade-in { animation: fadeIn 1.5s ease-out forwards; }
-        .animate-pulse-glow { animation: pulse-glow 2s ease-in-out infinite; }
-        .animate-bounce-in { animation: bounce-in 0.6s ease-out forwards; }
-        .animate-rotate-slow { animation: rotate-slow 20s linear infinite; }
+        @keyframes shimmer {
+            0% { background-position: -200% center; }
+            100% { background-position: 200% center; }
+        }
         
-        .gradient-bg {
-            background: linear-gradient(-45deg, #1e3a8a, #7c3aed, #2563eb, #8b5cf6);
-            background-size: 400% 400%;
-            animation: gradient-shift 15s ease infinite;
+        @keyframes typewriter {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+        
+        @keyframes blink {
+            50% { border-color: transparent; }
+        }
+        
+        @keyframes rainbow {
+            0% { color: #ff0000; }
+            16% { color: #ff8000; }
+            33% { color: #ffff00; }
+            50% { color: #00ff00; }
+            66% { color: #0080ff; }
+            83% { color: #8000ff; }
+            100% { color: #ff0000; }
+        }
+        
+        @keyframes glitch {
+            0% { transform: translate(0); }
+            20% { transform: translate(-2px, 2px); }
+            40% { transform: translate(-2px, -2px); }
+            60% { transform: translate(2px, 2px); }
+            80% { transform: translate(2px, -2px); }
+            100% { transform: translate(0); }
+        }
+        
+        .float-animation {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .pulse-glow {
+            animation: pulse-glow 2s ease-in-out infinite;
+        }
+        
+        .slide-left {
+            animation: slideInLeft 1s ease-out forwards;
+        }
+        
+        .slide-right {
+            animation: slideInRight 1s ease-out forwards;
+        }
+        
+        .slide-up {
+            animation: slideInUp 1s ease-out forwards;
+        }
+        
+        .bounce-animation {
+            animation: bounce 2s infinite;
+        }
+        
+        .rainbow-text {
+            animation: rainbow 3s linear infinite;
         }
         
         .shimmer-text {
-            background: linear-gradient(90deg, #fff 0%, #fcd34d 25%, #fff 50%, #fcd34d 75%, #fff 100%);
+            background: linear-gradient(90deg, #fff, #ffd700, #fff);
             background-size: 200% auto;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             animation: shimmer 3s linear infinite;
         }
         
+        .gradient-bg {
+            background: linear-gradient(-45deg, #1a1a2e, #16213e, #0f3460, #1a1a2e);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+        }
+        
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
         .card-hover {
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: all 0.3s ease;
         }
         
         .card-hover:hover {
             transform: translateY(-10px) scale(1.02);
-        }
-        
-        .creator-badge {
-            animation: bounce-in 1s ease-out forwards;
-            animation-delay: 2s;
-            opacity: 0;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
         }
         
         .teacher-card {
-            opacity: 0;
-        }
-        
-        .teacher-card.visible {
-            animation: slideInUp 0.8s ease-out forwards;
+            background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
         }
         
         .palestine-flag {
             display: inline-block;
-            animation: pulse 2s infinite;
+            animation: bounce 1s infinite;
+        }
+        
+        .creator-section {
+            background: linear-gradient(135deg, #000000, #1a1a2e);
+            border: 2px solid;
+            border-image: linear-gradient(45deg, #00ff00, #00ffff, #ff00ff, #00ff00) 1;
+            animation: pulse-glow 2s infinite;
+        }
+        
+        .instagram-gradient {
+            background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .neon-text {
+            text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff, 0 0 30px #00ffff;
+        }
+        
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 0;
+        }
+        
+        .particle {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: rgba(255,255,255,0.5);
+            border-radius: 50%;
+            animation: fall linear infinite;
+        }
+        
+        @keyframes fall {
+            0% { transform: translateY(-100vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
         }
         
         .logo-container {
-            animation: float 4s ease-in-out infinite;
+            position: relative;
         }
         
-        .decorative-circle {
+        .logo-container::before {
+            content: '';
             position: absolute;
+            inset: -5px;
+            background: linear-gradient(45deg, #ff0000, #ff8000, #ffff00, #00ff00, #0080ff, #8000ff, #ff0000);
+            background-size: 400% 400%;
+            animation: gradient 3s ease infinite;
             border-radius: 50%;
-            opacity: 0.1;
-            animation: rotate-slow 20s linear infinite;
+            z-index: -1;
+        }
+        
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+        
+        .scroll-reveal.active {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
-<body class="gradient-bg min-h-screen overflow-x-hidden">
-    <!-- Decorative Elements -->
-    <div class="decorative-circle w-96 h-96 bg-yellow-400 -top-48 -left-48 fixed"></div>
-    <div class="decorative-circle w-64 h-64 bg-pink-400 top-1/2 -right-32 fixed" style="animation-direction: reverse;"></div>
-    <div class="decorative-circle w-80 h-80 bg-blue-300 -bottom-40 left-1/4 fixed"></div>
-
+<body class="gradient-bg min-h-screen text-white overflow-x-hidden">
+    <!-- Particles Background -->
+    <div class="particles" id="particles"></div>
+    
     <!-- Navigation -->
-    <nav class="fixed top-0 w-full z-50 bg-white/10 backdrop-blur-lg border-b border-white/20">
-        <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-            <div class="flex items-center gap-3 animate-slide-left">
-                <img src="https://i.postimg.cc/D8qPZGmm/image.png" alt="School Logo" class="w-12 h-12 rounded-full object-cover border-2 border-yellow-400">
-                <span class="text-xl font-bold text-white">Johnson Secondary School</span>
+    <nav class="fixed top-0 w-full z-50 bg-black/30 backdrop-blur-lg border-b border-white/10">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <img src="https://i.postimg.cc/D8qPZGmm/image.png" alt="School Logo" class="w-12 h-12 rounded-full object-cover">
+                <span class="font-bold text-xl shimmer-text">Johnson Secondary School</span>
             </div>
-            <div class="hidden md:flex gap-8 animate-slide-right">
-                <a href="#home" class="text-white/90 hover:text-yellow-400 transition-colors font-medium">Home</a>
-                <a href="#about" class="text-white/90 hover:text-yellow-400 transition-colors font-medium">About</a>
-                <a href="#teachers" class="text-white/90 hover:text-yellow-400 transition-colors font-medium">Teachers</a>
-                <a href="#contact" class="text-white/90 hover:text-yellow-400 transition-colors font-medium">Contact</a>
+            <div class="flex gap-4">
+                <a href="https://instagram.com/johnsonsecondaryschool" target="_blank" class="hover:text-pink-400 transition-colors">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                </a>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="min-h-screen flex items-center justify-center pt-20 px-6">
-        <div class="max-w-6xl mx-auto text-center">
-            <div class="logo-container mb-8">
-                <img src="https://i.postimg.cc/D8qPZGmm/image.png" alt="Johnson Secondary School Logo" 
-                     class="w-40 h-40 md:w-52 md:h-52 mx-auto rounded-full border-4 border-yellow-400 shadow-2xl animate-pulse-glow object-cover">
+    <section class="min-h-screen flex items-center justify-center relative pt-20">
+        <div class="container mx-auto px-4 text-center">
+            <div class="logo-container inline-block mb-8 float-animation">
+                <img src="https://i.postimg.cc/D8qPZGmm/image.png" alt="Johnson Secondary School Logo" class="w-40 h-40 md:w-56 md:h-56 rounded-full object-cover pulse-glow">
             </div>
             
-            <h1 class="text-4xl md:text-7xl font-extrabold mb-4 animate-slide-up">
+            <h1 class="text-4xl md:text-6xl lg:text-7xl font-extrabold mb-4 slide-left">
                 <span class="shimmer-text">Johnson Secondary School</span>
             </h1>
             
-            <div class="animate-fade-in" style="animation-delay: 0.5s;">
-                <p class="text-xl md:text-2xl text-white/90 mb-2 flex items-center justify-center gap-2">
-                    <span class="text-2xl">📍</span>
-                    <span>Herbertpur, Dehradun, Uttarakhand</span>
-                </p>
-                <p class="text-lg text-yellow-300 font-medium mt-4">
-                    "शिक्षा से सशक्तिकरण | Empowering Through Education"
+            <div class="slide-right" style="animation-delay: 0.3s;">
+                <p class="text-xl md:text-2xl text-blue-300 mb-2">🏔️ UTTARAKHAND, DEHRADUN</p>
+                <p class="text-lg md:text-xl text-purple-300">📍 Heartbertpur</p>
+            </div>
+            
+            <div class="mt-8 slide-up" style="animation-delay: 0.6s;">
+                <p class="text-2xl md:text-3xl font-light text-gray-300">
+                    "Shaping Futures, Building Dreams"
                 </p>
             </div>
             
-            <div class="mt-10 flex flex-wrap justify-center gap-4 animate-slide-up" style="animation-delay: 0.8s;">
-                <a href="#about" class="px-8 py-4 bg-yellow-400 text-blue-900 font-bold rounded-full hover:bg-yellow-300 transform hover:scale-110 transition-all duration-300 shadow-lg">
-                    Explore More ✨
-                </a>
-                <a href="https://instagram.com/johnsonsecondaryschool" target="_blank" 
-                   class="px-8 py-4 bg-white/20 text-white font-bold rounded-full hover:bg-white/30 transform hover:scale-110 transition-all duration-300 border-2 border-white/50">
-                    Follow on Instagram 📸
-                </a>
+            <div class="mt-12 bounce-animation">
+                <svg class="w-8 h-8 mx-auto text-white/50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+                </svg>
             </div>
         </div>
     </section>
 
     <!-- About Section -->
-    <section id="about" class="py-20 px-6">
-        <div class="max-w-6xl mx-auto">
-            <h2 class="text-4xl md:text-5xl font-bold text-center text-white mb-16 animate-fade-in">
-                🏫 About Our School
-            </h2>
+    <section class="py-20 relative z-10">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 rainbow-text">About Our School</h2>
             
-            <div class="grid md:grid-cols-2 gap-10">
-                <div class="bg-white/10 backdrop-blur-lg rounded-3xl p-8 border border-white/20 card-hover">
-                    <div class="text-5xl mb-4">🌟</div>
-                    <h3 class="text-2xl font-bold text-yellow-400 mb-4">Excellence in Education</h3>
-                    <p class="text-white/90 leading-relaxed">
-                        Johnson Secondary School, Herbertpur mein sthit, Uttarakhand ke sabse achhe schools mein se ek hai. 
-                        Hamare school mein quality education ke saath-saath students ki overall development par focus kiya jaata hai.
-                    </p>
+            <div class="grid md:grid-cols-2 gap-8 items-center">
+                <div class="scroll-reveal">
+                    <img src="https://i.postimg.cc/wyyv0nrh/image.png" alt="School" class="rounded-2xl shadow-2xl w-full pulse-glow">
                 </div>
                 
-                <div class="bg-white/10 backdrop-blur-lg rounded-3xl p-8 border border-white/20 card-hover">
-                    <div class="text-5xl mb-4">💝</div>
-                    <h3 class="text-2xl font-bold text-pink-400 mb-4">Caring Environment</h3>
-                    <p class="text-white/90 leading-relaxed">
-                        Hamare teachers ka behaviour bahut hi achha hai. Woh har student ko pyaar aur respect ke saath treat 
-                        karte hain. Yahan har bachche ki care hoti hai aur unhe comfortable feel karaaya jaata hai.
-                    </p>
-                </div>
-                
-                <div class="bg-white/10 backdrop-blur-lg rounded-3xl p-8 border border-white/20 card-hover">
-                    <div class="text-5xl mb-4">📚</div>
-                    <h3 class="text-2xl font-bold text-green-400 mb-4">Quality Teaching</h3>
-                    <p class="text-white/90 leading-relaxed">
-                        Hamare teachers ki teaching bahut hi achhi hai. Woh complex concepts ko bhi simple tarike se samjhate 
-                        hain. Har student ko equal attention milti hai aur doubts clear karne mein teachers hamesha ready rehte hain.
-                    </p>
-                </div>
-                
-                <div class="bg-white/10 backdrop-blur-lg rounded-3xl p-8 border border-white/20 card-hover">
-                    <div class="text-5xl mb-4">🎯</div>
-                    <h3 class="text-2xl font-bold text-blue-400 mb-4">Bright Future</h3>
-                    <p class="text-white/90 leading-relaxed">
-                        Johnson Secondary School se nikal kar students apne future mein successful bante hain. 
-                        School mein moral values ke saath academics par bhi equal focus diya jaata hai.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- School Gallery -->
-    <section class="py-16 px-6">
-        <div class="max-w-6xl mx-auto">
-            <h2 class="text-4xl md:text-5xl font-bold text-center text-white mb-12">
-                📸 Our School
-            </h2>
-            <div class="flex justify-center">
-                <div class="bg-white/10 backdrop-blur-lg rounded-3xl p-4 border border-white/20 card-hover">
-                    <img src="https://i.postimg.cc/wyyv0nrh/image.png" alt="Johnson Secondary School" 
-                         class="rounded-2xl max-w-full h-auto shadow-2xl">
+                <div class="scroll-reveal space-y-6">
+                    <div class="teacher-card p-6 rounded-xl card-hover">
+                        <h3 class="text-2xl font-bold text-yellow-400 mb-3">🏫 Excellence in Education</h3>
+                        <p class="text-gray-300 leading-relaxed">
+                            Johnson Secondary School is one of the finest educational institutions in Dehradun, Uttarakhand. Located in the beautiful area of Heartbertpur, our school provides world-class education with a focus on overall development of students.
+                        </p>
+                    </div>
+                    
+                    <div class="teacher-card p-6 rounded-xl card-hover">
+                        <h3 class="text-2xl font-bold text-green-400 mb-3">📚 Quality Teaching</h3>
+                        <p class="text-gray-300 leading-relaxed">
+                            Our teachers are highly dedicated and experienced. They go above and beyond to ensure every student understands concepts thoroughly. The teaching methodology is modern and interactive, making learning fun and effective!
+                        </p>
+                    </div>
+                    
+                    <div class="teacher-card p-6 rounded-xl card-hover">
+                        <h3 class="text-2xl font-bold text-pink-400 mb-3">💖 Caring Environment</h3>
+                        <p class="text-gray-300 leading-relaxed">
+                            The behavior of our teachers and staff is exceptionally warm and caring. They treat every student like their own child, creating a loving and supportive learning environment where students can thrive!
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Teachers Section -->
-    <section id="teachers" class="py-20 px-6">
-        <div class="max-w-6xl mx-auto">
-            <h2 class="text-4xl md:text-5xl font-bold text-center text-white mb-16">
-                👨‍🏫 Our Amazing Teachers
-            </h2>
+    <section class="py-20 relative z-10">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 shimmer-text">Our Amazing Teachers</h2>
             
             <div class="grid md:grid-cols-3 gap-8">
                 <!-- Principal -->
-                <div class="teacher-card bg-gradient-to-br from-yellow-400/20 to-orange-500/20 backdrop-blur-lg rounded-3xl p-8 border-2 border-yellow-400/50 text-center card-hover">
-                    <div class="w-28 h-28 mx-auto mb-6 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full flex items-center justify-center text-5xl shadow-lg">
+                <div class="scroll-reveal teacher-card p-8 rounded-2xl text-center card-hover">
+                    <div class="w-32 h-32 mx-auto mb-6 rounded-full bg-gradient-to-r from-yellow-400 to-orange-500 flex items-center justify-center text-5xl float-animation">
                         👩‍💼
                     </div>
-                    <h3 class="text-2xl font-bold text-yellow-400 mb-2">Usha Ma'am</h3>
-                    <p class="text-white/80 font-medium mb-4">🎓 Principal</p>
-                    <p class="text-white/70 text-sm">
-                        Hamare school ki Principal, jo apne dedicated leadership se school ko heights par le ja rahi hain.
+                    <h3 class="text-2xl font-bold text-yellow-400 mb-2">Usha Mam</h3>
+                    <p class="text-purple-300 font-semibold mb-4">Principal</p>
+                    <p class="text-gray-300">
+                        Our respected Principal, Usha Mam, leads the school with vision and dedication. Under her guidance, the school has achieved remarkable success. Her leadership inspires both teachers and students! 🌟
                     </p>
-                    <div class="mt-4 inline-block px-4 py-2 bg-yellow-400/20 rounded-full text-yellow-300 text-sm">
-                        ⭐ School Leader
+                    <div class="mt-4 flex justify-center gap-2">
+                        <span class="px-3 py-1 bg-yellow-500/20 rounded-full text-yellow-300 text-sm">Leadership</span>
+                        <span class="px-3 py-1 bg-orange-500/20 rounded-full text-orange-300 text-sm">Visionary</span>
                     </div>
                 </div>
                 
-                <!-- Teacher -->
-                <div class="teacher-card bg-gradient-to-br from-pink-400/20 to-purple-500/20 backdrop-blur-lg rounded-3xl p-8 border-2 border-pink-400/50 text-center card-hover" style="animation-delay: 0.2s;">
-                    <div class="w-28 h-28 mx-auto mb-6 bg-gradient-to-br from-pink-400 to-purple-500 rounded-full flex items-center justify-center text-5xl shadow-lg">
+                <!-- Kiran Mam -->
+                <div class="scroll-reveal teacher-card p-8 rounded-2xl text-center card-hover" style="animation-delay: 0.2s;">
+                    <div class="w-32 h-32 mx-auto mb-6 rounded-full bg-gradient-to-r from-pink-400 to-red-500 flex items-center justify-center text-5xl float-animation" style="animation-delay: 0.5s;">
                         👩‍🏫
                     </div>
-                    <h3 class="text-2xl font-bold text-pink-400 mb-2">Kiran Ma'am</h3>
-                    <p class="text-white/80 font-medium mb-4">📖 Teacher</p>
-                    <p class="text-white/70 text-sm">
-                        Bahut hi caring aur dedicated teacher. Unka teaching style bahut interactive hai aur students ko easily samajh aata hai.
+                    <h3 class="text-2xl font-bold text-pink-400 mb-2">Kiran Mam</h3>
+                    <p class="text-purple-300 font-semibold mb-4">Teacher</p>
+                    <p class="text-gray-300">
+                        Kiran Mam is one of the best teachers in our school! Her teaching style is amazing and she explains everything so clearly. She is always patient and helpful with every student! 💕
                     </p>
-                    <div class="mt-4 inline-block px-4 py-2 bg-pink-400/20 rounded-full text-pink-300 text-sm">
-                        💖 Best Teacher
+                    <div class="mt-4 flex justify-center gap-2">
+                        <span class="px-3 py-1 bg-pink-500/20 rounded-full text-pink-300 text-sm">Caring</span>
+                        <span class="px-3 py-1 bg-red-500/20 rounded-full text-red-300 text-sm">Patient</span>
                     </div>
                 </div>
                 
-                <!-- Computer Teacher -->
-                <div class="teacher-card bg-gradient-to-br from-blue-400/20 to-cyan-500/20 backdrop-blur-lg rounded-3xl p-8 border-2 border-blue-400/50 text-center card-hover" style="animation-delay: 0.4s;">
-                    <div class="w-28 h-28 mx-auto mb-6 bg-gradient-to-br from-blue-400 to-cyan-500 rounded-full flex items-center justify-center text-5xl shadow-lg">
+                <!-- Suraj Sir -->
+                <div class="scroll-reveal teacher-card p-8 rounded-2xl text-center card-hover" style="animation-delay: 0.4s;">
+                    <div class="w-32 h-32 mx-auto mb-6 rounded-full bg-gradient-to-r from-blue-400 to-cyan-500 flex items-center justify-center text-5xl float-animation" style="animation-delay: 1s;">
                         👨‍💻
                     </div>
-                    <h3 class="text-2xl font-bold text-blue-400 mb-2">Suraj Sir</h3>
-                    <p class="text-white/80 font-medium mb-4">💻 Computer Teacher</p>
-                    <p class="text-white/70 text-sm">
-                        Computer ke expert! Coding, programming aur technology students ko bahut achhe se sikhate hain. Future ready banate hain!
+                    <h3 class="text-2xl font-bold text-cyan-400 mb-2">Suraj Sir</h3>
+                    <p class="text-purple-300 font-semibold mb-4">Computer Teacher</p>
+                    <p class="text-gray-300">
+                        Suraj Sir makes computer science fun and exciting! He teaches coding, software, and all tech concepts in an easy-to-understand way. Thanks to him, we love computers! 💻
                     </p>
-                    <div class="mt-4 inline-block px-4 py-2 bg-blue-400/20 rounded-full text-blue-300 text-sm">
-                        🖥️ Tech Guru
+                    <div class="mt-4 flex justify-center gap-2">
+                        <span class="px-3 py-1 bg-blue-500/20 rounded-full text-blue-300 text-sm">Tech Expert</span>
+                        <span class="px-3 py-1 bg-cyan-500/20 rounded-full text-cyan-300 text-sm">Innovative</span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Why Choose Us -->
-    <section class="py-20 px-6 bg-white/5">
-        <div class="max-w-6xl mx-auto">
-            <h2 class="text-4xl md:text-5xl font-bold text-center text-white mb-16">
-                ✨ Why Johnson Secondary School?
-            </h2>
+    <!-- Features Section -->
+    <section class="py-20 relative z-10">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 rainbow-text">Why Choose Us?</h2>
             
             <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-                <div class="text-center p-6 bg-white/10 rounded-2xl card-hover">
-                    <div class="text-4xl mb-3">📚</div>
-                    <p class="text-white font-medium">Quality Education</p>
+                <div class="scroll-reveal teacher-card p-6 rounded-xl text-center card-hover">
+                    <div class="text-5xl mb-4">📖</div>
+                    <h4 class="font-bold text-lg">Quality Education</h4>
                 </div>
-                <div class="text-center p-6 bg-white/10 rounded-2xl card-hover">
-                    <div class="text-4xl mb-3">💝</div>
-                    <p class="text-white font-medium">Caring Teachers</p>
+                <div class="scroll-reveal teacher-card p-6 rounded-xl text-center card-hover">
+                    <div class="text-5xl mb-4">💝</div>
+                    <h4 class="font-bold text-lg">Caring Teachers</h4>
                 </div>
-                <div class="text-center p-6 bg-white/10 rounded-2xl card-hover">
-                    <div class="text-4xl mb-3">🏆</div>
-                    <p class="text-white font-medium">Best Results</p>
+                <div class="scroll-reveal teacher-card p-6 rounded-xl text-center card-hover">
+                    <div class="text-5xl mb-4">🏆</div>
+                    <h4 class="font-bold text-lg">Best Results</h4>
                 </div>
-                <div class="text-center p-6 bg-white/10 rounded-2xl card-hover">
-                    <div class="text-4xl mb-3">🌟</div>
-                    <p class="text-white font-medium">Bright Future</p>
+                <div class="scroll-reveal teacher-card p-6 rounded-xl text-center card-hover">
+                    <div class="text-5xl mb-4">🌈</div>
+                    <h4 class="font-bold text-lg">Fun Learning</h4>
                 </div>
-                <div class="text-center p-6 bg-white/10 rounded-2xl card-hover">
-                    <div class="text-4xl mb-3">🎨</div>
-                    <p class="text-white font-medium">Creative Learning</p>
+                <div class="scroll-reveal teacher-card p-6 rounded-xl text-center card-hover">
+                    <div class="text-5xl mb-4">💻</div>
+                    <h4 class="font-bold text-lg">Modern Labs</h4>
                 </div>
-                <div class="text-center p-6 bg-white/10 rounded-2xl card-hover">
-                    <div class="text-4xl mb-3">🤝</div>
-                    <p class="text-white font-medium">Friendly Environment</p>
+                <div class="scroll-reveal teacher-card p-6 rounded-xl text-center card-hover">
+                    <div class="text-5xl mb-4">🎯</div>
+                    <h4 class="font-bold text-lg">Focused Approach</h4>
                 </div>
-                <div class="text-center p-6 bg-white/10 rounded-2xl card-hover">
-                    <div class="text-4xl mb-3">💻</div>
-                    <p class="text-white font-medium">Computer Lab</p>
+                <div class="scroll-reveal teacher-card p-6 rounded-xl text-center card-hover">
+                    <div class="text-5xl mb-4">🤝</div>
+                    <h4 class="font-bold text-lg">Great Behavior</h4>
                 </div>
-                <div class="text-center p-6 bg-white/10 rounded-2xl card-hover">
-                    <div class="text-4xl mb-3">🎯</div>
-                    <p class="text-white font-medium">Focused Learning</p>
+                <div class="scroll-reveal teacher-card p-6 rounded-xl text-center card-hover">
+                    <div class="text-5xl mb-4">⭐</div>
+                    <h4 class="font-bold text-lg">Excellence</h4>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-20 px-6">
-        <div class="max-w-4xl mx-auto text-center">
-            <h2 class="text-4xl md:text-5xl font-bold text-white mb-8">
-                📞 Contact Us
-            </h2>
+    <section class="py-20 relative z-10">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 shimmer-text">Connect With Us</h2>
             
-            <div class="bg-white/10 backdrop-blur-lg rounded-3xl p-10 border border-white/20">
-                <div class="grid md:grid-cols-2 gap-8">
-                    <div class="text-left">
-                        <h3 class="text-xl font-bold text-yellow-400 mb-4">📍 Address</h3>
-                        <p class="text-white/90">
-                            Johnson Secondary School<br>
-                            Herbertpur, Dehradun<br>
-                            Uttarakhand, India
-                        </p>
-                    </div>
-                    <div class="text-left">
-                        <h3 class="text-xl font-bold text-yellow-400 mb-4">📱 Social Media</h3>
-                        <a href="https://instagram.com/johnsonsecondaryschool" target="_blank" 
-                           class="flex items-center gap-3 text-white/90 hover:text-pink-400 transition-colors mb-3">
-                            <span class="text-2xl">📸</span>
-                            <span>@johnsonsecondaryschool</span>
-                        </a>
-                    </div>
-                </div>
+            <div class="max-w-2xl mx-auto teacher-card p-8 rounded-2xl text-center">
+                <div class="text-6xl mb-6">📍</div>
+                <h3 class="text-2xl font-bold mb-4">Our Location</h3>
+                <p class="text-xl text-gray-300 mb-6">
+                    Johnson Secondary School<br>
+                    Heartbertpur, Dehradun<br>
+                    Uttarakhand, India 🇮🇳
+                </p>
+                
+                <a href="https://instagram.com/johnsonsecondaryschool" target="_blank" 
+                   class="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-purple-500 via-pink-500 to-orange-500 rounded-full font-bold text-lg hover:scale-105 transition-transform">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073z"/><path d="M12 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4z"/><circle cx="18.406" cy="5.594" r="1.44"/></svg>
+                    @johnsonsecondaryschool
+                </a>
             </div>
         </div>
     </section>
 
     <!-- Creator Section -->
-    <section class="py-16 px-6">
-        <div class="max-w-4xl mx-auto">
-            <div class="creator-badge bg-gradient-to-r from-purple-600/30 to-pink-600/30 backdrop-blur-lg rounded-3xl p-8 border-2 border-purple-400/50 text-center">
-                <h3 class="text-2xl font-bold text-white mb-4">💻 Website Created By</h3>
-                <div class="flex items-center justify-center gap-3 text-3xl md:text-4xl font-extrabold">
-                    <span class="bg-gradient-to-r from-green-400 via-white to-red-500 bg-clip-text text-transparent">
-                        ANAS SAKA
-                    </span>
-                    <span class="palestine-flag text-3xl">🇵🇸</span>
+    <section class="py-20 relative z-10">
+        <div class="container mx-auto px-4">
+            <div class="max-w-3xl mx-auto creator-section p-8 md:p-12 rounded-3xl text-center">
+                <div class="text-4xl mb-4 palestine-flag">🇵🇸</div>
+                <h2 class="text-3xl md:text-4xl font-bold mb-6 neon-text">Made By</h2>
+                
+                <div class="text-5xl md:text-7xl font-extrabold mb-6" id="creatorName">
+                    <span class="rainbow-text">ANAS SAKA</span>
                 </div>
+                
+                <div class="flex justify-center gap-2 mb-8">
+                    <span class="text-3xl palestine-flag" style="animation-delay: 0.1s;">🇵🇸</span>
+                    <span class="text-3xl palestine-flag" style="animation-delay: 0.2s;">🇵🇸</span>
+                    <span class="text-3xl palestine-flag" style="animation-delay: 0.3s;">🇵🇸</span>
+                </div>
+                
                 <a href="https://instagram.com/phising.attaker" target="_blank" 
-                   class="inline-flex items-center gap-2 mt-6 px-6 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold rounded-full hover:from-purple-600 hover:to-pink-600 transform hover:scale-110 transition-all duration-300">
-                    <span>📸</span>
-                    <span>@phising.attaker</span>
+                   class="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-purple-600 via-pink-600 to-red-600 rounded-full font-bold text-xl hover:scale-110 transition-transform pulse-glow">
+                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073z"/><path d="M12 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4z"/><circle cx="18.406" cy="5.594" r="1.44"/></svg>
+                    <span class="instagram-gradient font-extrabold">@phising.attaker</span>
                 </a>
-                <p class="text-white/60 mt-4 text-sm">Follow for more awesome projects! 🚀</p>
+                
+                <p class="mt-8 text-gray-400">
+                    Web Developer & Designer 💻✨
+                </p>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="py-10 px-6 bg-black/30 border-t border-white/10">
-        <div class="max-w-6xl mx-auto text-center">
-            <div class="flex items-center justify-center gap-3 mb-4">
-                <img src="https://i.postimg.cc/D8qPZGmm/image.png" alt="Logo" class="w-10 h-10 rounded-full object-cover">
-                <span class="text-xl font-bold text-white">Johnson Secondary School</span>
-            </div>
-            <p class="text-white/60 mb-4">Herbertpur, Dehradun, Uttarakhand</p>
-            <div class="flex items-center justify-center gap-2 text-white/80">
-                <span>Made with</span>
-                <span class="text-red-500 animate-pulse text-xl">❤️</span>
-                <span>by</span>
-                <span class="font-bold text-purple-400">ANAS SAKA</span>
-                <span class="palestine-flag">🇵🇸</span>
-            </div>
-            <p class="text-white/40 text-sm mt-4">© 2024 Johnson Secondary School. All Rights Reserved.</p>
+    <footer class="py-8 border-t border-white/10 relative z-10">
+        <div class="container mx-auto px-4 text-center">
+            <p class="text-gray-400">
+                © 2024 Johnson Secondary School | Made with ❤️ by <span class="rainbow-text font-bold">ANAS SAKA</span> 🇵🇸
+            </p>
         </div>
     </footer>
 
     <script>
-        // Intersection Observer for scroll animations
-        const observerOptions = {
-            threshold: 0.2,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
+        // Create floating particles
+        function createParticles() {
+            const container = document.getElementById('particles');
+            const colors = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4', '#ffeaa7', '#dfe6e9', '#a29bfe'];
+            
+            for (let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.width = Math.random() * 10 + 5 + 'px';
+                particle.style.height = particle.style.width;
+                particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+                particle.style.animationDuration = Math.random() * 10 + 10 + 's';
+                particle.style.animationDelay = Math.random() * 10 + 's';
+                particle.style.opacity = Math.random() * 0.5 + 0.2;
+                container.appendChild(particle);
+            }
+        }
+        
+        // Scroll reveal animation
+        function scrollReveal() {
+            const reveals = document.querySelectorAll('.scroll-reveal');
+            
+            reveals.forEach(element => {
+                const windowHeight = window.innerHeight;
+                const elementTop = element.getBoundingClientRect().top;
+                const revealPoint = 150;
+                
+                if (elementTop < windowHeight - revealPoint) {
+                    element.classList.add('active');
                 }
-            });
-        }, observerOptions);
-
-        // Observe teacher cards
-        document.querySelectorAll('.teacher-card').forEach(card => {
-            observer.observe(card);
-        });
-
-        // Smooth scroll for navigation
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Add parallax effect to decorative circles
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            document.querySelectorAll('.decorative-circle').forEach((circle, index) => {
-                const speed = (index + 1) * 0.1;
-                circle.style.transform = `translateY(${scrolled * speed}px) rotate(${scrolled * 0.02}deg)`;
-            });
-        });
-
-        // Creator badge special animation on hover
-        const creatorBadge = document.querySelector('.creator-badge');
-        if (creatorBadge) {
-            creatorBadge.addEventListener('mouseenter', () => {
-                creatorBadge.style.transform = 'scale(1.02)';
-                creatorBadge.style.boxShadow = '0 0 50px rgba(147, 51, 234, 0.5)';
-            });
-            creatorBadge.addEventListener('mouseleave', () => {
-                creatorBadge.style.transform = 'scale(1)';
-                creatorBadge.style.boxShadow = 'none';
             });
         }
-
-        console.log('%c🇵🇸 Made with ❤️ by ANAS SAKA', 'font-size: 20px; font-weight: bold; color: #8b5cf6;');
-        console.log('%c📸 Instagram: @phising.attaker', 'font-size: 14px; color: #ec4899;');
+        
+        // Creator name animation
+        function animateCreatorName() {
+            const name = document.getElementById('creatorName');
+            const text = 'ANAS SAKA';
+            let html = '';
+            
+            for (let i = 0; i < text.length; i++) {
+                html += `<span style="animation: bounce 0.5s ease ${i * 0.1}s infinite alternate; display: inline-block;">${text[i] === ' ' ? '&nbsp;' : text[i]}</span>`;
+            }
+            
+            name.innerHTML = `<span class="rainbow-text">${html}</span>`;
+        }
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            createParticles();
+            animateCreatorName();
+            scrollReveal();
+        });
+        
+        window.addEventListener('scroll', scrollReveal);
+        
+        // Add glitch effect on hover for creator name
+        const creatorSection = document.querySelector('.creator-section');
+        creatorSection.addEventListener('mouseenter', () => {
+            creatorSection.style.animation = 'glitch 0.3s ease infinite';
+        });
+        creatorSection.addEventListener('mouseleave', () => {
+            creatorSection.style.animation = 'pulse-glow 2s infinite';
+        });
     </script>
 </body>
 </html>
